@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install Apache httpd
+      ansible.built.apt:
+        name: apache2
+        state: present
+
+    - name: Copy HTML file from local to remote
+      ansible.built.copy:
+        src: Ansible/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
